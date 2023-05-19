@@ -17,7 +17,7 @@ public class Factura {
   private Cliente cliente;
 
   @Autowired
-  @Qualifier("ItemFactura")
+  @Qualifier("ItemFacturaOficina")
   private List<ItemFactura> items;
 
 
