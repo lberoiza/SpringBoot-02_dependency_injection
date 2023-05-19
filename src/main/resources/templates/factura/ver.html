@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="th:http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+</head>
+<body>
+<article class="factura">
+  <h1 th:text="${title}"></h1>
+
+  <section class="descripcion">
+    <h3>Descripcion:</h2>
+    <p th:text="${factura.descripcion}"></p>
+  </section>
+
+  <section class="cliente">
+    <span>Cliente: </span>
+    <span th:text="${factura.cliente.nombreCompleto}"></span>
+  </section>
+
+  <section class="detalles">
+    <table>
+    	<thead>
+    		<tr>
+    			<th>Producto</th>
+    			<th>Precio</th>
+    			<th>Cantidad</th>
+    			<th>Total</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr th:each="item : ${factura.items}">
+    			<td th:text="${item.producto.nombre}"></td>
+    			<td th:text="${item.producto.precio}"></td>
+    			<td th:text="${item.cantidad}"></td>
+    			<td th:text="${item.total}"></td>
+    		</tr>
+    	</tbody>
+    	<tfoot>
+    		<tr>
+    			<td></td>
+    			<td></td>
+    			<td></td>
+    			<td th:text="${factura.total}"></td>
+    		</tr>
+    	</tfoot>
+    	
+    </table>
+
+  </section>
+
+</article>
+</body>
+</html>
