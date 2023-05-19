@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 @Component
 public class Factura {
 
@@ -20,6 +23,21 @@ public class Factura {
   @Qualifier("ItemFacturaOficina")
   private List<ItemFactura> items;
 
+
+  @PostConstruct
+  public void despuesConstructor() {
+    cliente.setNombre("Luis Alberto");
+    cliente.setApellido("Beroíza Osses");
+    descripcion = descripcion.concat(" de "+cliente.getNombreCompleto());
+  }
+
+
+  @PreDestroy
+  public void antesDestruir() {
+    System.out.println("Antes de Destruir el Contenedor, se ejecuta este metodo");
+    System.out.println("Como Nuestra clase es Singleton, ese metodo se ejecutara");
+    System.out.println("Cuando la aplicacion finalize");
+  }
 
   public String getDescripcion() {
     return descripcion;
